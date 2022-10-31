@@ -1,0 +1,107 @@
+<header class="header">
+    <div class="header-title">Angular Blog</div>
+    <div class="header-btn">
+        <div class="group-log-in" *ngIf="btnGroups">
+            <button type="button" class="btn btn-sign-in" (click)="signIn()">Sign In</button>
+            <button type="button" class="btn btn-sign-up" (click)="signUp()">Sign Up</button>
+        </div>
+        <div class="group-log-out" *ngIf="!btnGroups">
+            <button type="button" class="btn btn-add-post" (click)="addPost()">Add post</button>
+            <button class="user-name">{{ currentUserName }}</button>
+            <button type="button" class="btn btn-sign-out" (click)="signOut()">Sign Out</button>
+        </div>
+    </div>
+</header>
+<main class="main">
+    <div class="container">
+        <div class="post" *ngFor="let post of blogPosts; index as postIndex">
+            <div class="post-body">
+                <div class="post-info">
+                    <h3 class="post-title">{{ post.topic }}</h3>
+                    <p class="post-author">Posted by: {{ post.postedBy }}</p>
+                    <div class="post-desc">{{ post.message }}</div>
+                </div>
+                <div class="post-date"><span></span>{{ post.date | date:'HH:mm, dd.LL.y'}}</div>
+            </div>
+            <div class="post-control">
+                <button type="button" class="edit-post" [disabled]="!checkAdminOrPostRights(post.postedBy)" (click)="editPost(postIndex)">Edit</button>
+                <button type="button" class="delete-post" [disabled]="!checkAdminOrPostRights(post.postedBy)" (click)="deletePost(postIndex)">Delete</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="modal" *ngIf="modalActive">
+    <div class="modal-sign-in" *ngIf="signInActive">
+        <div class="top">
+            <h4>Sign In</h4>
+            <span (click)="closeModal()"></span>
+        </div>
+        <form action="" class="form-sign-in">
+            <div class="email-wrapper">
+                <h4>Email:</h4>
+                <input type="text" class="input email" (input)='checkEmail(emailValueIn)' [(ngModel)]="emailValueIn" [ngModelOptions]="{standalone: true}">
+              </div>
+            <div class="password-wrapper">
+                <h4>Password:</h4>
+                <input type="password" class="input password" (input)='checkPassword(passwordValueIn)' [(ngModel)]="passwordValueIn" [ngModelOptions]="{standalone: true}">
+              </div>
+        </form>
+        <div class="bottom">
+            <div class="btn-wrapper">
+                <button type="button" class="close" (click)="closeModal()">Close</button>
+                <button type="button" class="submit" (click)="logIn()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-sign-up" *ngIf="signUpActive">
+        <div class="top">
+            <h4>Sign Up</h4>
+            <span (click)="closeModal()"></span>
+        </div>
+        <form action="" class="form-sign-up">
+            <div class="user-name-wrapper">
+                <h4>User name:</h4>
+                <input type="text" class="input user-name" [(ngModel)]="userNameUp" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="email-wrapper">
+                <h4>Email:</h4>
+                <input type="text" class="input email" [(ngModel)]="emailValueUp" [ngModelOptions]="{standalone: true}"
+                 (input)='ifExistsEmail(emailValueUp)'>
+              </div>
+            <div class="password-wrapper">
+                <h4>Password:</h4>
+                <input type="password" class="input password" [(ngModel)]="passwordValueUp" [ngModelOptions]="{standalone: true}"
+                    (input)='ifExistsPass(passwordValueUp)'>
+              </div>
+        </form>
+        <div class="bottom">
+            <div class="btn-wrapper">
+                <button type="button" class="close" (click)="closeModal()">Close</button>
+                <button type="button" class="submit" [disabled]="!emailIfExists && !passIfExists ? false : true" (click)="createUser()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-add-post" *ngIf="postActive">
+        <div class="top">
+            <h4>Add post</h4>
+            <span (click)="closeModal()"></span>
+        </div>
+        <form action="" class="form-add-post">
+            <div class="post-wrapper">
+                <h4>Title:</h4>
+                <input type="text" class="input post-title" [(ngModel)]="postTitle" [ngModelOptions]="{standalone: true}">
+            </div>
+            <h4>Text:</h4>
+            <textarea class="textarea"  cols="30" rows="10" [(ngModel)]="textArea" [ngModelOptions]="{standalone: true}"></textarea>
+        </form>
+        <div class="bottom">
+            <div class="btn-wrapper">
+                <button type="button" class="close" (click)="closeModal()">Close</button>
+                <button type="button" class="post" *ngIf="!editPostActive" (click)="createPost()">Post</button>
+                <button type="button" class="edit-post" *ngIf="editPostActive" (click)="saveEditedPost()">Edit Post</button>
+            </div>
+        </div>
+    </div>
+
+</div>

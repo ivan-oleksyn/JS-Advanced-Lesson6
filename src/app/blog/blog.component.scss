@@ -1,0 +1,272 @@
+@import "/src/app/shared/styles/mixins";
+@import "/src/app/shared/styles/variables";
+@import "/src/app/shared/styles/normalize";
+
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    background-color: #2b3238;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    &-title{
+        color: #fefefe;
+        font-family: $font-family;
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+    &-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        .group-log-in{
+            display: flex;
+            .btn{
+                @include button-style;
+            }
+            .btn-sign-in{
+                border: 2px solid $btn-sign-in;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                color: $btn-sign-in;
+            }
+            .btn-sign-in:hover{
+                color:#fefefe;
+                background-color: $btn-sign-in;
+            }
+            .btn-sign-up{
+                border: 2px solid $btn-sign-up;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                color:  $btn-sign-up;
+            }
+            .btn-sign-up:hover{
+                color:#fefefe;
+                background-color: $btn-sign-up;
+            }
+        }
+        .group-log-out{
+            display: flex;
+            .btn{
+                @include button-style;
+            }
+            .btn-add-post{
+                border: 2px solid $btn-sign-in;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                color: $btn-sign-in;
+            }
+            .btn-add-post:hover{
+                color: #fefefe;
+                background-color: $btn-sign-in;
+            }
+            .user-name{
+                width: 80px;
+                height: 50px;
+                background-color: $btn-sign-out;
+                border: 2px solid $btn-sign-out;
+                font-family: $font-family;
+            }
+            .btn-sign-out{
+                border: 2px solid $btn-sign-out;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                color: $btn-sign-out;
+            }
+            .btn-sign-out:hover{
+                color: #fefefe;
+                background-color: $btn-sign-out;
+            }
+        }
+    }
+}
+.main{
+    position: relative;
+    .container{
+        width: 80%;
+        height: 100vh;
+        margin: 0 auto;
+        .post{
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin-top: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            &-body{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                .post-info{
+                    width: 70%;
+                    .post-title{
+                        margin: 0;
+                        font-family: $font-family;
+                        font-size: 22px;
+                        font-weight: normal;
+                        letter-spacing: 1px;
+                    }
+                    .post-author{
+                        font-family: $font-family;
+                        font-size: 15px;
+                        color: gray;
+                        margin: 10px 0 0;
+                        letter-spacing: 1px;
+                    }
+                    .post-desc{
+                        font-family: $font-family;
+                        font-size: 16px;
+                        margin: 10px 0 0;
+                        letter-spacing: 1px;
+                    }
+                }
+                .post-date{
+                    display: flex;
+                    font-family: $font-family;
+                    font-size: 12px;
+                    letter-spacing: .5px;
+                    color: gray;
+                    justify-content: center;
+                    align-items: center;
+                    span{
+                        display: block;
+                        width: 15px;
+                        height: 15px;
+                        background-image: url('/assets/clock.png');
+                        background-size: cover;
+                        margin-right: 5px;
+                    }
+                }
+            }
+            .post-control{
+                display: flex;
+                flex-direction: row-reverse;
+                .edit-post{
+                    order: 1;
+                    @include btn-edit-post;
+                }
+                .edit-post:hover{
+                    outline:  #f1c122;
+                    border: 1px solid #f1c122;
+                    box-shadow: 0 0 0 4px  #f1c12291;
+                }
+                .delete-post{
+                    @include btn-delete-post;
+                }
+                .delete-post:hover{
+                    outline:  #db4c4c;
+                    border: 1px solid #db4c4c;
+                    box-shadow: 0 0 0 4px #db4c4c91;
+                }
+            }
+        }
+    }
+    
+}
+.modal{
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #00000069;
+    &-sign-in, &-sign-up, &-add-post{
+        width: 500px;
+        background-color: #fff;
+        margin: 40px auto;
+        border-radius:5px;
+        padding-bottom: 20px;
+        .top{
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 60px;
+            border-bottom: 2px solid #e0e0e0;
+            padding: 0 20px;
+            h4{
+                font-family: $font-family;
+                font-weight: 700;
+                font-size: 20px;
+                letter-spacing: 1px;
+            }
+            span{
+                width: 18px;
+                height: 18px;
+                background-image: url('/assets/close.svg');
+                background-size: cover;
+                cursor: pointer;
+                
+            }
+        }
+    }
+    .form-sign-in, .form-sign-up, .form-add-post{
+        width: 90%;
+        margin: 20px auto;
+        
+        .password-wrapper, .email-wrapper, .user-name-wrapper, .post-wrapper{
+            width: 100%;
+            height: 85px;
+            margin-bottom: 20px;
+            
+            .input{
+                @include input-style;
+
+            }
+            .input:focus{
+                @include input-focus;
+            }
+        }
+        h4{
+            margin:0 0 10px 0;
+            font-family: $font-family;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        .textarea{
+            @include textarea-style;
+        }
+        .textarea:focus{
+            @include input-focus;
+        }
+    }
+    .bottom{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row-reverse;
+        border-top: 1px solid  #e0e0e0;
+        .btn-wrapper{
+            margin-top: 20px;
+            .close{
+                @include btn-close;
+            }
+            .close:hover{
+                background-color: #666666;
+            }
+            .submit{
+                @include btn-submit;
+            }
+            .submit:hover{
+                background-color: #218318;
+            }
+            .post{
+                @include btn-post;
+            }
+            .post:hover{
+                background-color: #218318;
+            }
+            .edit-post{
+                @include btn-submit;
+            }
+            .edit-post:hover{
+                background-color: #218318;
+            }
+        }
+    }
+}

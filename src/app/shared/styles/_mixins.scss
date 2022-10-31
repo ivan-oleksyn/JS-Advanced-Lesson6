@@ -1,0 +1,104 @@
+@mixin button-style{
+    width: 90px;
+    height: 50px;
+    background: none;
+    border-style: none;
+    font-size: 17px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+@mixin input-style {
+    width: 95%;
+    height: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid  #e0e0e0;
+    font-size: 17px;
+    outline: transparent;
+    box-shadow: 0 0 0 4px transparent;
+}
+
+@mixin input-focus {
+    outline: #71b3fa;
+    border: 1px solid #78b1f1;
+    box-shadow: 0 0 0 4px #027cff3f;
+}
+
+@mixin textarea-style {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    border-radius: 5px;
+    border: 2px solid  #e0e0e0;
+    font-size: 17px;
+    outline: transparent;
+    box-shadow: 0 0 0 4px transparent;
+    font-family: $font-family;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+@mixin btn-close {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #818181;
+    color: #fefefe;
+    font-family: $font-family;
+    font-size: 16px;
+    letter-spacing: .5px;
+    cursor: pointer;
+    margin-right: 5px;
+    order: 1;
+}
+@mixin btn-submit {
+    width: 90px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ab31d;
+    color: #fefefe;
+    font-family: $font-family;
+    font-size: 16px;
+    letter-spacing: .5px;
+    cursor: pointer;
+    order: 2;
+}
+@mixin btn-post {
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ab31d;
+    color: #fefefe;
+    font-family: $font-family;
+    font-size: 16px;
+    letter-spacing: .5px;
+    cursor: pointer;
+    order: 2;
+}
+@mixin btn-edit-post {
+    width: 50px;
+    height: 30px;
+    background-color: #f1c122;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-family: $font-family;
+    font-size: 14px;
+    letter-spacing: .5px;
+}
+@mixin btn-delete-post {
+    width: 70px;
+    height: 30px;
+    background-color: #db4c4c;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: $font-family;
+    font-size: 14px;
+    letter-spacing: .5px;
+    color: #fefefe;
+}
